@@ -6,6 +6,7 @@ test('Check buying', async ({ page }) => {
     // await page.waitForTimeout(120_000);
 
     await page.goto('https://practicesoftwaretesting.com/');
+    // await page.goto('https://with-bugs.practicesoftwaretesting.com/#/');
 
     await page.locator('[data-test="nav-sign-in"]').click();
     await page.waitForSelector('[data-test="email"]');
@@ -16,8 +17,12 @@ test('Check buying', async ({ page }) => {
     await page.locator('[data-test="login-submit"]').click();
 
     await expect(page).toHaveURL('https://practicesoftwaretesting.com/account')
+    // await expect(page).toHaveURL('https://with-bugs.practicesoftwaretesting.com/#/account')
 
     await page.locator('[data-test="nav-home"]').click();
+
+    await expect(page).toHaveURL('https://practicesoftwaretesting.com/')
+    // await expect(page).toHaveURL('https://with-bugs.practicesoftwaretesting.com/#')
 
     await page.locator('h5[data-test="product-name"]:text("Combination Pliers")').click();
 
