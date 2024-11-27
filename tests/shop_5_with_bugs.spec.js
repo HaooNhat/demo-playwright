@@ -3,6 +3,8 @@ const { test, expect } = require('@playwright/test');
 // const url = "https://practicesoftwaretesting.com/" // For sprint 5
 const url = "https://with-bugs.practicesoftwaretesting.com/#/" // For sprint 5 with bugs
 
+// For more information, read the no bugs version.
+
 test('Test search function', async ({ page }) => {
     await page.goto(url);
 

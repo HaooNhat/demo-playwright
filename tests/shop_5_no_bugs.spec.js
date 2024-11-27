@@ -3,6 +3,16 @@ const { test, expect } = require('@playwright/test');
 const url = "https://practicesoftwaretesting.com/" // For sprint 5
 // const url = "https://with-bugs.practicesoftwaretesting.com/#/" // For sprint 5 with bugs
 
+// Tips: better internet connection improve the test quality. Sometime test cases can fail because of bad connection.
+
+// Playwright can generate code for you, use "npx playwright codegen" to do that. Be careful that not all the generated code will always work, especially with selecting element. Instead you should use page.locator() to look for the exact selector.
+
+// Use "npx playwright test" to test all the file in the "tests" folder
+// Or use "npx playwright test shop_5_no_bugs" to test a specific file
+// Or use "npx playwright test -g 'search function'" to test a specific test case that match the name
+
+// Some advance feature like trace viewer for debugging, help you screen shoot, but you need to configure the file in a different way.
+
 test('Test search function', async ({ page }) => {
     await page.goto(url);
 
@@ -16,6 +26,7 @@ test('Test search function', async ({ page }) => {
 
     await expect(page.locator('div[data-test="search_completed"]')).toBeVisible();
 
+    // $$ for select all elements that matched
     const productNames = await page.$$('h5[data-test="product-name"]');
 
     // Assert that all product names contain "drill"
@@ -162,7 +173,7 @@ test('Test sorting function', async ({ page }) => {
 })
 
 test('Test buy function', async ({ page }) => {
-    test.setTimeout(90_000); // 90 second, increase if the internet is slow.
+    test.setTimeout(90_000); // Set the test time to 90 second (default is 30 second), increase if the internet is slow.
 
     // await page.waitForTimeout(120_000);
 
